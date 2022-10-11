@@ -60,13 +60,13 @@ jobs:
       - run:
         name: deploy
         command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd laravel-ci && \
-              git pull origin master && \
-              composer install -n --no-dev --prefer-dist && \
-              npm ci && \
-              npm run prod && \
-              php artisan migrate --force && \
-              php artisan config:cache"
+          ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd laravel-ci && \
+            git pull origin master && \
+            composer install -n --no-dev --prefer-dist && \
+            npm ci && \
+            npm run prod && \
+            php artisan migrate --force && \
+            php artisan config:cache"
 
 workflows:
   version: 2
@@ -74,9 +74,9 @@ workflows:
     jobs:
       - build
       - deploy:
-        requires:
-          - build
-        filters:
-          brunches:
-            only:
-              - master
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
