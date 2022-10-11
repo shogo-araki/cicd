@@ -58,8 +58,8 @@ jobs:
     steps:
       - add_ssh_keys
       - run:
-        name: deploy
-        command: |
+          name: deploy
+          command: |
             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd laravel-ci && \
               git pull origin master && \
               composer install -n --no-dev --prefer-dist && \
@@ -74,9 +74,9 @@ workflows:
     jobs:
       - build
       - deploy:
-        requires:
-          - build
-        filters:
-          brunches:
-            only:
-              - master
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
